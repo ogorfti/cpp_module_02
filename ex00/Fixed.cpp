@@ -6,40 +6,47 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 11:37:39 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/10/04 12:10:51 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/10/04 21:19:59 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#include "Fixed.hpp"
 
-class Parent
+Fixed::Fixed()
 {
-	public:
-		virtual void show()
-		{
-			std::cout << "This is parent" << std::endl;
-		}
-};
+	this->fixed = 0;
+	std::cout << "Default constructor called" << std::endl;
+}
 
-class Child : public Parent
+Fixed::Fixed (const Fixed& other)
 {
-	public:
-		void show()
-		{
-			std::cout << "This is child" << std::endl;
-		}
-};
+	std::cout << "Copy constructor called" << std::endl;
+	*this = other;
+}
 
-int main()
+Fixed& Fixed::operator=(const Fixed& x)
 {
-	
-	Parent parent;
-	Child child;
-	Parent *base;
+	if (this != &x)
+	{
+		std::cout << "Copy assignment operator called" << std::endl;
+		this->fixed = x.getRawBits();
+	}
+	return (*this);
+}
 
-	base = &parent;
-	base->show();
-	
-	base = &child;
-	base->show();
+Fixed::~Fixed()
+{
+	std::cout << "Destructor called" << std::endl;
+}
+
+int Fixed::getRawBits( void ) const
+{
+	std::cout << "getRawBits member function called" << std::endl;
+	return (this->fixed);
+}
+
+void Fixed::setRawBits( int const raw )
+{
+	std::cout << "setRawBits member function called" << std::endl;
+	this->fixed = raw;
 }

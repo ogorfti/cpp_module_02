@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 10:33:03 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/10/04 12:19:40 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/10/04 19:53:18 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@ class Fixed
 		int	fixed;
 		static const int bits = 8;
 	public:
-		Fixed(){}
-		Fixed (const Fixed& copy){}
-		Fixed& operator=(const Fixed& x){}
-		~Fixed(){}
+		Fixed();
+		Fixed (const Fixed& other);
+		Fixed& operator=(const Fixed& x);
+		int getRawBits( void ) const;
+		void setRawBits( int const raw );
+		~Fixed();
 };
 
 #endif
