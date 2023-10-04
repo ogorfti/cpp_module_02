@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 10:33:03 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/10/02 12:54:45 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/10/04 12:19:40 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <iostream>
 
+// ClassName& operator=(const ClassName& x);
 class Fixed
 {
 	private:
@@ -23,6 +24,7 @@ class Fixed
 	public:
 		Fixed(){}
 		Fixed (const Fixed& copy){}
+		Fixed& operator=(const Fixed& x){}
 		~Fixed(){}
 };
 
