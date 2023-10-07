@@ -6,11 +6,13 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:25:43 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/10/06 18:55:07 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/10/07 11:30:20 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+
+/*------------- Orthodox --------------*/
 
 Fixed::Fixed()
 {
@@ -67,63 +69,104 @@ std::ostream& operator<<(std::ostream& os, const Fixed& x)
 	return (os);
 }
 
-bool operator<(Fixed& left, Fixed& right)
+bool operator<(Fixed left, Fixed right)
 {
 	return (left.toFloat() < right.toFloat());
 }
 
-bool operator>(Fixed& left, Fixed& right)
+/*------------- Operators --------------*/
+
+bool operator>(Fixed left, Fixed right)
 {
 	return (left.toFloat() > right.toFloat());
 }
 
-bool operator>=(Fixed& left, Fixed& right)
+bool operator>=(Fixed left, Fixed right)
 {
 	return (left.toFloat() >= right.toFloat());
 }
 
-bool operator<=(Fixed& left, Fixed& right)
+bool operator<=(Fixed left, Fixed right)
 {
 	return (left.toFloat() <= right.toFloat());
 }
 
-bool operator==(Fixed& left, Fixed& right)
+bool operator==(Fixed left, Fixed right)
 {
 	return (left.toFloat() == right.toFloat());
 }
 
-bool operator!=(Fixed& left, Fixed& right)
+bool operator!=(Fixed left, Fixed right)
 {
 	return (left.toFloat() != right.toFloat());
 }
 
-float operator*(Fixed& left, Fixed& right)
+float operator*(Fixed left, Fixed right)
 {
 	return (left.toFloat() * right.toFloat());
 }
 
-float operator+(Fixed& left, Fixed& right)
+float operator+(Fixed left, Fixed right)
 {
 	return (left.toFloat() + right.toFloat());
 }
 
-float operator-(Fixed& left, Fixed& right)
+float operator-(Fixed left, Fixed right)
 {
 	return (left.toFloat() - right.toFloat());
 }
 
-float operator/(Fixed& left, Fixed& right)
+float operator/(Fixed left, Fixed right)
 {
 	return (left.toFloat() / right.toFloat());
 }
 
-// Fixed& Fixed::operator=(const Fixed& x)
+/*------------- Increment/Decrement --------------*/
 
-// Fixed& Fixed::operator++(const Fixed& x)
-// {
-	// return (left.toFloat() / right.toFloat());
-	// x.
-	// this.
-	// return (*this);
-// }
+Fixed& Fixed::operator++()
+{
+	this->fixed += 1;
+	return (*this);
+}
 
+Fixed Fixed::operator++(int)
+{
+	Fixed tmp(*this);
+	++(*this);
+	return (tmp);
+}
+
+Fixed& Fixed::operator--()
+{
+	this->fixed -= 1;
+	return (*this);
+}
+
+Fixed Fixed::operator--(int)
+{
+	Fixed tmp(*this);
+	--(*this);
+	return (tmp);
+}
+
+/*------------- Static member functions --------------*/
+
+Fixed& Fixed::min(Fixed& left, Fixed& right) 
+{
+	return (left < right) ? left : right;
+}
+
+Fixed& Fixed::max(Fixed& left, Fixed& right) 
+{
+	return (left > right) ? left : right;
+}
+
+Fixed const Fixed::max(const Fixed& left, const Fixed& right)
+{
+	return (left.toFloat() > right.toFloat()) ? left : right;
+}
+
+Fixed const Fixed::min(const Fixed& left, const Fixed& right)
+{
+	return (left.toFloat() < right.toFloat()) ? left : right;
+}
